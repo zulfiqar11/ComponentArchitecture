@@ -12,10 +12,7 @@ import { ApplicationForm } from '../../models/application-form';
   template: `
     <div class="section">
       <div *ngFor="let section of sections$ | async">
-        <div>
-          {{ section.type }} {{ section.id }}
-          <button (click)="loadSection(section)">Load</button>
-        </div>
+        <div>{{ section.type }} {{ section.id }}</div>
       </div>
     </div>
   `,
