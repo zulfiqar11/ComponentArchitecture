@@ -6,34 +6,27 @@ html, body {
 .header {
   height:20%;
   width:100%;
-  background-color: red;
 }
 .left{
   height:30%;
   width: 20%;
-  background-color: blue;
   display:inline-block;
 }
 
 .right{
   height:80%;
   width: 80%;
-  background-color: yellow;
   float:right;
 }
 
 .rightTop{
   height:20%;
   width: 100%;
-
-  background-color: brown;
 }
 
 
 .rightBottom{
   height:60%;
   width: 100%;
-
-  background-color: brown;
 }
 
