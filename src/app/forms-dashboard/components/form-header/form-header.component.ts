@@ -9,7 +9,7 @@ import { ApplicationForm } from '../../models/application-form';
     <div class="container">
       <div class="header-info" *ngIf="parent$ | async as form">
         <div>
-          <b>The Application Type:</b>
+          <b>Application Type:</b>
           {{ form.applicationType }}
         </div>
         <div>
