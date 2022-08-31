@@ -19,8 +19,9 @@ import { ApplicationForm } from '../../models/application-form';
         <li>Tree {{ mainForm.id }}</li>
         <ul *ngFor="let personalInfo of mainForm.children">
           <li>
-            Sub Form {{ personalInfo.id }}
-            <button (click)="loadSubForm(personalInfo)">Load</button>
+            <button (click)="loadSubForm(personalInfo)">
+              Sub Form {{ personalInfo.id }}
+            </button>
           </li>
         </ul>
       </ul>
