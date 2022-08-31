@@ -1,0 +1,26 @@
+.container {
+  margin:1%;
+  display: flex;
+  background-color: rgb(238, 248, 222);
+  border: 1px solid black;
+}
+.header-info{
+  width:70%;
+  height:150px;
+  padding: 20px 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+.header-button{
+  width:30%;
+}
+.submit-button {
+  background-color: green;
+  margin-top: 10%;
+  margin-left:40%;
+  padding:3% 15%;
+  border-radius: 8%;
+  border: none;
+  cursor:pointer;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}

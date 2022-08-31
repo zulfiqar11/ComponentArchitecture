@@ -1,0 +1,148 @@
+{
+	"formId": "1",
+	"applicationType": "Taxes Form",
+	"applicationInstanceId": "34bbdc2a-d6a4-442e-9e91-a9c32731ead0",
+	"creationDate": "2020-01-01",
+	"lastUpdate": "2020-09-01",
+	"children": [
+		{
+			"id": "1",
+			"type": "tree",
+			"title": "Personal Information",
+			"children": [
+				{
+					"id": "11",
+					"type": "subform",
+					"title": "Individual Information",
+					"children": [
+						{
+							"id": "111",
+							"type": "section",
+							"title": "Personal Information",
+							"children": [
+								{
+									"id": "1111",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"title": "First Name"
+								},
+								{
+									"id": "1112",
+									"type": "field",
+									"fieldType": "textField",
+									"required": false,
+									"title": "Middle Name"
+								},
+								{
+									"id": "1113",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"title": "Last Name"
+								},
+								{
+									"id": "1114",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"mask": "ssn",
+									"title": "SSN"
+								}
+							]
+						},
+						{
+							"id": "112",
+							"type": "section",
+							"title": "Residencial Address",
+							"children": [
+								{
+									"id": "1121",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"title": "Street "
+								},
+								{
+									"id": "1122",
+									"type": "field",
+									"fieldType": "textField",
+									"required": false,
+									"title": "Ste/Apt #"
+								},
+								{
+									"id": "1123",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"title": "City/Town"
+								},
+								{
+									"id": "1124",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"mask": "zip",
+									"title": "ZIP Code"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"id": "2",
+			"type": "tree",
+			"title": "Taxes Information",
+			"children": [
+				{
+					"id": "21",
+					"type": "subform",
+					"title": "Payroll Deductions",
+					"children": [
+						{
+							"id": "211",
+							"type": "section",
+							"title": "Your Paycheck",
+							"children": [
+								{
+									"id": "2111",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"mask": "currency",
+									"title": "Yearly gross salary"
+								},
+								{
+									"id": "2112",
+									"type": "field",
+									"fieldType": "textField",
+									"required": false,
+									"mask": "currency",
+									"title": "Potential Yearly bonus"
+								},
+								{
+									"id": "2113",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"mask": "currency",
+									"title": "Social Security Tax"
+								},
+								{
+									"id": "2114",
+									"type": "field",
+									"fieldType": "textField",
+									"required": true,
+									"mask": "currency",
+									"title": "Net Pay (per month)"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
