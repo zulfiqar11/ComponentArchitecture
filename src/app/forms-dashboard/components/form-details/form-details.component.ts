@@ -1,4 +1,9 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { PersonalInfoForm } from './../../models/application-form';
 import {
   ChangeDetectionStrategy,
@@ -67,15 +72,19 @@ export class FormDetailsComponent implements OnChanges {
   addControls() {
     this.form = this.formBuilder.group({});
     this.personalInfoFormFields?.forEach((field) => {
-      if (field.required === true) {
-        this.form.addControl(
-          field?.title,
-          this.formBuilder.control('', [Validators.required])
-        );
-      } else {
-        this.form.addControl(field?.title, this.formBuilder.control(''));
-      }
+      this.form.addControl(
+        field?.title,
+        this.formBuilder.control('', this.ValidatorsToAdd(field))
+      );
     });
+  }
+
+  ValidatorsToAdd(field: PersonalInfoForm): ValidatorFn[] {
+    let ValidatorsAdded: ValidatorFn[] = [];
+    if (field.required === true) {
+      ValidatorsAdded.push(Validators.required);
+    }
+    return ValidatorsAdded;
   }
 
   submitEnabled() {
