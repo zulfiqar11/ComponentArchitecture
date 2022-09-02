@@ -1,4 +1,4 @@
-import { ZipCodeValidators } from './zipcode.validators';
+import { CustomValidators } from './Custom.validators';
 import {
   FormBuilder,
   FormGroup,
@@ -26,8 +26,11 @@ import {
             <label [ngStyle]="{ color: 'red' }" *ngIf="field.required">*</label>
             <input type="text" [formControlName]="field.title" />
             <label *ngIf="invalidZipCode && field.title === 'ZIP Code'"
-              >Invalid zipcode: 5 numbers</label
-            >
+              >Invalid zipcode: 5 numbers
+            </label>
+            <label *ngIf="invalidSSN && field.title === 'SSN'"
+              >Invalid social security number: xxx-xx-xxxx
+            </label>
           </label>
         </div>
         <div>
@@ -85,9 +88,21 @@ export class FormDetailsComponent implements OnChanges {
     if (field.required === true) {
       ValidatorsAdded.push(Validators.required);
     }
-    if (field.mask === 'zip') {
-      ValidatorsAdded.push(ZipCodeValidators.checkUSAZipCode);
+
+    switch (field.mask) {
+      case 'zip':
+        ValidatorsAdded.push(CustomValidators.checkUSAZipCode);
+        break;
+      case 'ssn':
+        ValidatorsAdded.push(CustomValidators.checkUSAssn);
+        break;
+      case 'currency':
+        ValidatorsAdded.push(CustomValidators.checkUSACurrency);
+        break;
+      default:
+        break;
     }
+
     return ValidatorsAdded;
   }
 
@@ -116,6 +131,20 @@ export class FormDetailsComponent implements OnChanges {
       this.form?.get('ZIP Code')?.hasError('invalidZipcode') &&
       this.form?.get('ZIP Code').touched &&
       this.form?.get('ZIP Code').dirty
+    );
+  }
+  get invalidSSN() {
+    return (
+      this.form?.get('SSN')?.hasError('invalidSSN') &&
+      this.form?.get('SSN').touched &&
+      this.form?.get('SSN').dirty
+    );
+  }
+  get invalidCurrency() {
+    return (
+      this.form?.get('SSN')?.hasError('invalidSSN') &&
+      this.form?.get('SSN').touched &&
+      this.form?.get('SSN').dirty
     );
   }
 }
