@@ -1,3 +1,4 @@
+import { ZipCodeValidators } from './zipcode.validators';
 import {
   FormBuilder,
   FormGroup,
@@ -6,7 +7,6 @@ import {
 } from '@angular/forms';
 import { PersonalInfoForm } from './../../models/application-form';
 import {
-  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -16,7 +16,6 @@ import {
 
 @Component({
   selector: 'app-form-details',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['form-details.component.css'],
   template: `
     <div class="details">
@@ -26,7 +25,9 @@ import {
             {{ field?.title }}:
             <label [ngStyle]="{ color: 'red' }" *ngIf="field.required">*</label>
             <input type="text" [formControlName]="field.title" />
-            <label>{{ field?.mask }}</label>
+            <label *ngIf="invalidZipCode && field.title === 'ZIP Code'"
+              >Invalid zipcode: 5 numbers</label
+            >
           </label>
         </div>
         <div>
@@ -84,6 +85,9 @@ export class FormDetailsComponent implements OnChanges {
     if (field.required === true) {
       ValidatorsAdded.push(Validators.required);
     }
+    if (field.mask === 'zip') {
+      ValidatorsAdded.push(ZipCodeValidators.checkUSAZipCode);
+    }
     return ValidatorsAdded;
   }
 
@@ -105,5 +109,13 @@ export class FormDetailsComponent implements OnChanges {
       this.sectionIndex = this.sectionIndex + 1;
     }
     this.navigate.emit(this.sectionIndex);
+  }
+
+  get invalidZipCode() {
+    return (
+      this.form?.get('ZIP Code')?.hasError('invalidZipcode') &&
+      this.form?.get('ZIP Code').touched &&
+      this.form?.get('ZIP Code').dirty
+    );
   }
 }
