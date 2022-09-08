@@ -31,6 +31,9 @@ import {
             <label *ngIf="invalidSSN && field.title === 'SSN'"
               >Invalid social security number: xxx-xx-xxxx
             </label>
+            <label *ngIf="checkSalary(field.title)"
+              >Invalid currency: 123.45
+            </label>
           </label>
         </div>
         <div>
@@ -140,11 +143,33 @@ export class FormDetailsComponent implements OnChanges {
       this.form?.get('SSN').dirty
     );
   }
-  get invalidCurrency() {
+  checkSalary(fieldTitle: string) {
+    let returnValue = false;
+
+    switch (fieldTitle) {
+      case 'Yearly gross salary':
+        returnValue = this.validateCurrency(fieldTitle);
+        break;
+      case 'Potential Yearly bonus':
+        returnValue = this.validateCurrency(fieldTitle);
+        break;
+      case 'Social Security Tax':
+        returnValue = this.validateCurrency(fieldTitle);
+        break;
+      case 'Net Pay (per month)':
+        returnValue = this.validateCurrency(fieldTitle);
+        break;
+      default:
+        break;
+    }
+
+    return returnValue;
+  }
+  validateCurrency(fieldTitle: string): boolean {
     return (
-      this.form?.get('SSN')?.hasError('invalidSSN') &&
-      this.form?.get('SSN').touched &&
-      this.form?.get('SSN').dirty
+      this.form?.get(fieldTitle)?.hasError('invalidCurrency') &&
+      this.form?.get(fieldTitle).touched &&
+      this.form?.get(fieldTitle).dirty
     );
   }
 }
